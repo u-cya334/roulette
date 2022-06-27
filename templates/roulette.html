@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>運勢ルーレット</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"/>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+</head>
+<body>
+
+    <div id="app">
+        <button id="start" v-on:click="button" v-if="!show">ルーレットスタート</button>
+        <button v-on:click="stop" v-if="show">ストップ</button>
+    </div>
+    <br>
+    <canvas id="roulette"></canvas>
+
+    <script src="../static/js/vue.js"></script>
+    <!-- <script src="../static/js/Chart.min.js"></script> -->
+
+    <!-- <script src="../static/js/chartjs-plugin-datalabels@2.0.0"></script> -->
+    <script src="../static/js/roulette.js"></script>
+</body>
+</html>
