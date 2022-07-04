@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ル―レットメーカー</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"/>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+</head>
+<body>
+    <h1>ルーレットメーカー</h1>
+
+    <div id="canvas_box">
+        <canvas id="roulette"></canvas>
+        <img id="neko" src="../static/img/neko2.png" alt="">
+    </div>
+    <div id="app">
+        <div id="box">
+            <div class="txt">結果：[[message]]</div>
+            <div id="inbox">
+                <textarea name="" id="name" cols="30" rows="10">メロン,スイカ</textarea>
+                <textarea name="" id="number" cols="30" rows="10">1,1</textarea>
+            </div>
+        </div>
+        
+        <button v-on:click="create">作成</button>
+        <div class="txt">
+            左のテキストボックスにラベルの名前、右のテキストボックスに数値を「,」で区切って入れてください。<br>
+            <br>
+            このサイトでは誰でも無料でルーレットを作成することができます。<br>
+            お昼ご飯を決めるとき、どのゲームを遊ぶか悩んだとき、罰ゲームをするときなどなにかに悩んだ時に使ってください！<br>
+            また、このサイトは個人作成のサイトです。不具合などがあった場合はこちらのメールアドレスまでご連絡ください。<br>
+            panikimaru334@gmail.com
+        </div>
+
+    
+        <footer>
+            <div id="footer_txt">
+                &copy;2022 Tamagokakegohan
+            </div>
+            
+        </footer>
+    </div>
+
+</body>
+<style>
+    .txt{
+        text-align: center;
+        margin-bottom: 5%;
+    }
+    #box{
+        width: 100%;
+        display: block;
+    }
+    textarea{
+        margin-left: 20vw;
+        
+    }
+    button{
+        margin-left: 50%;
+        font-size: large;
+    }
+</style>
+<script src="../static/js/vue.js"></script>
+<script src="../static/js/normal.js"></script>
+</html>

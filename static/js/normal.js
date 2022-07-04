@@ -1,49 +1,15 @@
 Chart.register(ChartDataLabels);
 const ctx = document.getElementById('roulette').getContext('2d');
 
-const data_list = [2,2,10,2,10,10,10,2,10,10,2,10,2]
-const label_list = [
-    "大吉",
-    "大凶",
-    "吉",
-    "大凶",
-    "吉",
-    "凶",
-    "吉",
-    "大凶",
-    "凶",
-    "吉",
-    "大凶",
-    "凶",
-    "大凶"
-]
+let data_list = [1,1]
+let label_list = ["メロン","スイカ"]
 let sum = 0;
 data_list.forEach(element => {
     sum+=element
     console.log(sum)
 });
 
-data={
-    datasets:[{
-        data:data_list,
-        backgroundColor: [
-            'Red',
-            "rgb(158, 98, 255)",
-            "rgb(255, 151, 24)",
-            "rgb(158, 98, 255)",
-            "rgb(255, 151, 24)",
-            "rgb(54, 155, 255)",
-            "rgb(255, 151, 24)",
-            "rgb(158, 98, 255)",
-            "rgb(54, 155, 255)",
-            "rgb(255, 151, 24)",
-            "rgb(158, 98, 255)",
-            "rgb(54, 155, 255)",
-            "rgb(158, 98, 255)",]
-    }],
-    labels:label_list,
-    
-}
+
 
 options={
     plagins:{
@@ -86,22 +52,34 @@ Chart.defaults.set("plugins",{
     },
 })
 
-
+let roulette
 // ルーレットの表示
-let roulette = new Chart (ctx,{
-    type:"doughnut",
-    data:data,
-    plagins:[ChartDataLabels],
-    options:{
-        
-        plagins:{
-            tooltip:{
-                enable:false
-            }
+const making_roulette = function(){
+    roulette = new Chart (ctx,{
+        type:"doughnut",
+        data:{
+            datasets:[{
+                data:data_list,
+                backgroundColor: ["red","blue","green","orange","rgb(158, 98, 255)"
+            ]
+            }],
+            labels:label_list,
+            
         },
-        responsive: true,
-    }
-})
+        plagins:[ChartDataLabels],
+        options:{
+            
+            plagins:{
+                tooltip:{
+                    enable:false
+                }
+            },
+            responsive: true,
+        }
+    })    
+}
+
+making_roulette()
 
 // クリックされたときのイベント
 document.addEventListener("click",function(e){
@@ -126,8 +104,7 @@ document.addEventListener("click",function(e){
 
 const pie = document.getElementById('roulette')
 
-// 矢印の位置の調整
-const yajirushi = document.getElementById("yajirushi");
+
 
 
 
@@ -163,24 +140,22 @@ const app = new Vue({
                         }
                         break;
                     case "speed_down":
-                        console.log("mode="+this.mode)
-                        console.log(this.rotate%360)
-                        
+
                         // 終了前の減速
                         if(this.speed>1){
                             console.log("tuujou ")
                             this.speed = this.speed - this.speed/600;
                         }
-                        if(this.speed<=0.2&& this.rotate%360>=75&&this.rotate%360<90&&this.speed>=0.02){
+                        if(this.speed<=0.2){
                             console.log('急ブレーキ３')
-                            this.speed -= this.speed/100;
-                        }else if(this.speed<=0.3&& this.rotate%360>=60&&this.rotate%360<90&&this.speed>=0.05){
+                            this.speed -= this.speed/75;
+                        }else if(this.speed<=0.3&&this.speed>0.2){
                             console.log('急ブレーキ2.5')
-                            this.speed -= this.speed/110;
-                        }else if(this.speed<=0.5&& this.rotate%360>=320&&this.speed>=0.1){
+                            this.speed -= this.speed/100;
+                        }else if(this.speed<=0.5&&this.speed>0.3){
                             console.log("急ブレーキ２")
                             this.speed -= this.speed/120;
-                        }else if(this.speed<=1&& this.rotate%360>=240&&this.speed>=0.4){
+                        }else if(this.speed<=1&&this.speed>0.5){
                             this.speed -= this.speed/400;
                             console.log("急ブレーキ");
                         }
@@ -192,10 +167,8 @@ const app = new Vue({
                 this.rotate += this.speed
                 pie.style.transform = "rotate("+this.rotate+"deg)";
 
-                
-
                 // 終了時の処理
-                if(this.speed<=0.05&&this.rotate%360<=90&&this.rotate%360>=88){
+                if(this.speed<=0.05){
                     console.log("finish")
                     console.log('角度'+this.rotate%360)
                     this.mode = "stop"
@@ -204,7 +177,13 @@ const app = new Vue({
                     this.finish = true;
                     let result_rotate = this.rotate%360;
                     i = 0;
-                    this.check_sum = 0
+                    // チェック用の合計をリセット
+                    this.check_sum = 0;
+                    sum = 0;
+                    data_list.forEach(element => {
+                        sum+=Number(element);
+                        console.log("sum"+sum);
+                    });
                     if(result_rotate<=90){
                         // 角度が90度以下の場合の処理
                         data_list.some(element=>{
@@ -213,9 +192,10 @@ const app = new Vue({
                             console.log("result_rotate"+result_rotate)
                             this.check_sum += element * 360/sum;
                             console.log("check_sum="+this.check_sum)
-                            if(this.check_sum>=result_rotate){
+                            if(this.check_sum>=result_rotate+90){
                                 console.log(label_list[i])
                                 this.result(label_list[i])
+                                return true;
                             }
                             i+=1;
                         })
@@ -239,6 +219,7 @@ const app = new Vue({
                             i+=1;
                         });
                     }
+                    
                 }
             })
         },
@@ -256,12 +237,23 @@ const app = new Vue({
                 console.log("もう押されてる")
             }
         },
-        canvas_click:function(){
-            console.log("canvas")
+        create:function(){
+            text = document.getElementById('name').value;
+            ratio = document.getElementById("number").value;
+            console.log(text.split(","))
+            label_list=[]
+            data_list = []
+            label_list = label_list.concat(text.split(","))
+            data_list = data_list.concat(ratio.split(","))
+            console.log(label_list)
+            console.log(data_list)
+            
+            roulette.destroy()
+            making_roulette()
         },
-        result:function(result){
-            console.log(result)
-            this.message = result;
+        result:function(res){
+            console.log(res)
+            this.message = res;
         }
     }
 })
