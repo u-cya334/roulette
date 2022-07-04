@@ -171,15 +171,15 @@ const app = new Vue({
                             console.log("tuujou ")
                             this.speed = this.speed - this.speed/600;
                         }
-                        if(this.speed<=0.2&& this.rotate%360>=75&&this.rotate%360<90&&this.speed>=0.02){
+                        if(this.speed<=0.2&& this.rotate%360>=72&&this.rotate%360<90&&this.speed>=0.02){
                             console.log('急ブレーキ３')
-                            this.speed -= this.speed/100;
+                            this.speed -= this.speed/110;
                         }else if(this.speed<=0.3&& this.rotate%360>=60&&this.rotate%360<90&&this.speed>=0.05){
                             console.log('急ブレーキ2.5')
-                            this.speed -= this.speed/110;
+                            this.speed -= this.speed/130;
                         }else if(this.speed<=0.5&& this.rotate%360>=320&&this.speed>=0.1){
                             console.log("急ブレーキ２")
-                            this.speed -= this.speed/120;
+                            this.speed -= this.speed/160;
                         }else if(this.speed<=1&& this.rotate%360>=240&&this.speed>=0.4){
                             this.speed -= this.speed/400;
                             console.log("急ブレーキ");
@@ -195,7 +195,7 @@ const app = new Vue({
                 
 
                 // 終了時の処理
-                if(this.speed<=0.05&&this.rotate%360<=90&&this.rotate%360>=88){
+                if(this.speed<=0.05&&this.rotate%360<=92&&this.rotate%360>=85){
                     console.log("finish")
                     console.log('角度'+this.rotate%360)
                     this.mode = "stop"
@@ -213,9 +213,10 @@ const app = new Vue({
                             console.log("result_rotate"+result_rotate)
                             this.check_sum += element * 360/sum;
                             console.log("check_sum="+this.check_sum)
-                            if(this.check_sum>=result_rotate){
+                            if(90-result_rotate<=this.check_sum){
                                 console.log(label_list[i])
                                 this.result(label_list[i])
+                                return true
                             }
                             i+=1;
                         })
