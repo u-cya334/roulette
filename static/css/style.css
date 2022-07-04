@@ -1,22 +1,101 @@
-#roulette{
-    transform: rotate(0deg);
-    width: 70%;
-    margin-left: 0%;
-    top: 5%;
-    margin-top: 10%;
-    border-radius: 70%;
+@media(min-width:700px){
+    #roulette{
+        transform: rotate(0deg);
+        width: 65%;
+        position: relative;
+    }
+    
+    #canvas_box{
+        margin-left: 32vw;
+        margin-right: 32vw;
+        top: 0%;
+        margin-top: 0;
+        position: relative;
+    }
+    
+    h1{
+        top: 0;
+        margin-top: 0;
+        background-color: rgba(47, 47, 47, 0.943);
+        color: white;
+        padding-left: 3%;
+    }
+    
+    
+    .message{
+        text-align: center;
+    }
+    
+    #neko{
+        position: absolute;
+        display: block;
+        width: 30%;
+        top: 16vw;
+        left: 90%;
+    }
+    
 }
 
-#yajirushi{
-    position:absolute;
-    width:15%;
-    margin-left: 44%;
-    transform-origin: center;
-    z-index: 3;
-    top: 10%;
+@media(max-width:699px){
+    #roulette{
+        transform: rotate(0deg);
+        width: 70%;
+        position: relative;
+    }
+    
+    #canvas_box{
+        margin-left: 5vw;
+        margin-right: 15vw;
+        top: 0%;
+        margin-top: 0;
+        border-radius: 70%;
+        position: relative;
+    }
+    
+    h1{
+        top: 0;
+        margin-top: 0;
+        background-color: rgba(47, 47, 47, 0.943);
+        color: white;
+        padding-left: 3%;
+    }
+    
+    
+    .message{
+        text-align: center;
+    }
+    
+    #neko{
+        position: absolute;
+        display: block;
+        width: 20%;
+        top: 37vw;
+        left: 95%;
+    }
+    
 
 }
 
-.message{
+footer{
+    position: fixed;
+    bottom: 0;
+    background-color: rgba(47, 47, 47, 0.943) ;
+    width: 100%;
+    color: white;
+}
+
+#footer_txt{
     text-align: center;
+}
+
+#etc{
+    margin-bottom: 4%;
+}
+
+.etc_txt{
+    text-align: center;
+}
+
+#result{
+    font: bold 5vw cursive;
 }

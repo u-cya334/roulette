@@ -30,7 +30,7 @@ options={
         },
         tooltip:false
     },
-    responsive: true,
+    responsive: false,
 }
 
 
@@ -73,7 +73,9 @@ let roulette = new Chart (ctx,{
     options:{
         
         plagins:{
-            
+            tooltip:{
+                enable:false
+            }
         },
         responsive: true,
     }
@@ -102,6 +104,7 @@ const yajirushi = document.getElementById("yajirushi");
 
 
 // Vueの設定
+Vue.options.delimiters = ['[[', ']]'];
 const app = new Vue({
     el:"#app",
     data:{
@@ -110,7 +113,7 @@ const app = new Vue({
         mode:"none",
         show:false,
         finish:false,
-        message:"これはテストメッセージです",
+        message:"---",
         check_sum:0,
     },
     methods:{
@@ -138,19 +141,19 @@ const app = new Vue({
                         // 終了前の減速
                         if(this.speed>1){
                             console.log("tuujou ")
-                            this.speed = this.speed - this.speed/500;
+                            this.speed = this.speed - this.speed/600;
                         }
-                        if(this.speed<=1&& this.rotate%360>=350&&this.speed>=0.02){
+                        if(this.speed<=0.2&& this.rotate%360>=75&&this.rotate%360<90&&this.speed>=0.02){
                             console.log('急ブレーキ３')
-                            this.speed -= this.speed/50;
-                        }else if(this.speed<=1&& this.rotate%360>=340&&this.speed>=0.05){
+                            this.speed -= this.speed/75;
+                        }else if(this.speed<=0.3&& this.rotate%360>=60&&this.rotate%360<90&&this.speed>=0.05){
                             console.log('急ブレーキ2.5')
                             this.speed -= this.speed/100;
-                        }else if(this.speed<=1&& this.rotate%360>=240&&this.speed>=0.1){
+                        }else if(this.speed<=0.5&& this.rotate%360>=320&&this.speed>=0.1){
                             console.log("急ブレーキ２")
-                            this.speed -= this.speed/150;
-                        }else if(this.speed<=1&& this.rotate%360>=150&&this.speed>=0.4){
-                            this.speed -= this.speed/200;
+                            this.speed -= this.speed/120;
+                        }else if(this.speed<=1&& this.rotate%360>=240&&this.speed>=0.4){
+                            this.speed -= this.speed/400;
                             console.log("急ブレーキ");
                         }
                         
@@ -164,14 +167,14 @@ const app = new Vue({
                 
 
                 // 終了時の処理
-                if(this.speed<=0.05&&this.rotate%360<=4){
+                if(this.speed<=0.05&&this.rotate%360<=94&&this.rotate%360>=90){
                     console.log("finish")
                     console.log('角度'+this.rotate%360)
                     this.mode = "stop"
                     this.speed = 0;
                     clearInterval(i)
                     this.finish = true;
-                    let result_rotate = this.rotate%360;
+                    let result_rotate = this.rotate%360-90;
                     i = 0;
                     this.check_sum = 0
                     data_list.some(element => {

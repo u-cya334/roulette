@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>運勢ルーレット</title>
+    <title>ルーレットメーカー</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"/>
     <link rel="stylesheet" href="../static/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
@@ -12,21 +12,36 @@
 
 </head>
 <body>
-    <h1>今日の運勢</h1>
-    <canvas id="roulette">
-    </canvas>
-    <div id="app">
-        <img src="../static/img/yajirushi.png" alt="" id="yajirushi" >
-        <div id="container">
-            <div class="message" v-if="!show">画面タップしてルーレット開始</div>  
-            <div class="message" v-else-if="show">画面タップで停止</div>
-            <div class="message" v-if="finish">
-                運勢はどうでしたか?<br>
-                では実験のページにもどっでください
-            </div>
-            <div class="message" v-if="finish">{{message}}</div>
-        </div>
+    <h1>ルーレットメーカー</h1>
+    <div id="canvas_box">
+        <canvas id="roulette"></canvas>
+        <img id="neko" src="../static/img/neko2.png" alt="">
     </div>
+
+    <div id="app">
+        <!-- <img src="../static/img/yajirushi.png" alt="" id="yajirushi" > -->
+        <div id="container">
+            <div class="message" v-if="mode=='none'">画面タップしてルーレット開始</div>  
+            <div class="message" v-else-if="mode=='speed_up'">画面タップで停止</div>
+            <div class="message" id="result" >結果：[[message]]</div>
+        </div>
+
+        <div id="etc">
+            <div class="etc_txt">
+                このサイトでは誰でも無料でルーレットを作成することができます。<br>
+                何かに迷った時に使ってみてください！
+            </div>
+        </div>
+
+        <footer>
+            <div id="footer_txt">
+                &copy;2022 Tamagokakegohan
+            </div>
+            
+        </footer>
+    </div>
+
+    
     <script src="../static/js/vue.js"></script>
     <!-- <script src="../static/js/Chart.min.js"></script> -->
 
