@@ -12,18 +12,26 @@
 
 </head>
 <body>
-
+    <h1>今日の運勢</h1>
+    <canvas id="roulette">
+    </canvas>
     <div id="app">
-        <button id="start" v-on:click="button" v-if="!show">ルーレットスタート</button>
-        <button v-on:click="stop" v-if="show">ストップ</button>
+        <img src="../static/img/yajirushi.png" alt="" id="yajirushi" >
+        <div id="container">
+            <div class="message" v-if="!show">画面タップしてルーレット開始</div>  
+            <div class="message" v-else-if="show">画面タップで停止</div>
+            <div class="message" v-if="finish">
+                運勢はどうでしたか?<br>
+                では実験のページにもどっでください
+            </div>
+            <div class="message" v-if="finish">{{message}}</div>
+        </div>
     </div>
-    <br>
-    <canvas id="roulette"></canvas>
-
     <script src="../static/js/vue.js"></script>
     <!-- <script src="../static/js/Chart.min.js"></script> -->
 
     <!-- <script src="../static/js/chartjs-plugin-datalabels@2.0.0"></script> -->
     <script src="../static/js/roulette.js"></script>
+
 </body>
 </html>

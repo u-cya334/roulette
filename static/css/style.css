@@ -1,5 +1,22 @@
 #roulette{
     transform: rotate(0deg);
     width: 70%;
-    margin-left: 15%;
+    margin-left: 0%;
+    top: 5%;
+    margin-top: 10%;
+    border-radius: 70%;
+}
+
+#yajirushi{
+    position:absolute;
+    width:15%;
+    margin-left: 44%;
+    transform-origin: center;
+    z-index: 3;
+    top: 10%;
+
+}
+
+.message{
+    text-align: center;
 }
